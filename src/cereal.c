@@ -99,7 +99,7 @@ void *rx_looper(void *ext) {
     if (args->arm == 0) { args->arm = &arm; }
 
     do {
-        while ((args->arm == 0) || (*args->arm)) { usleep(args->nap_time); }
+        while ((args->arm == 0) || (*args->arm == 0)) { usleep(args->nap_time); }
         while ((args->run == 0) || (*args->run)) {
             unsigned int new_head = (q->head + 1) & q->mask;
             if (new_head != q->tail) {
