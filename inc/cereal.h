@@ -1,21 +1,14 @@
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef CEREAL_H
+#define CEREAL_H
 
 #include <stdint.h>
+
+#include <pool_queue.h>
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-
-typedef struct PoolQueue {
-    uint8_t **buff;
-    unsigned int *length;
-    unsigned int head;
-    unsigned int tail;
-    unsigned int mask;
-    unsigned int buff_mask;
-} PoolQueue;
 
 typedef struct TxLooperArgs {
     PoolQueue queue;
@@ -64,4 +57,3 @@ uint16_t crc16(const uint8_t *p, unsigned int len);
 #endif
 
 #endif
-
