@@ -5,5 +5,6 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "../lib")
 
 include_directories(inc)
+include_directories(../pool_queue/inc)
 
 add_library(cereal SHARED src/cereal.c inc/cereal.h)
