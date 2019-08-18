@@ -46,8 +46,6 @@ typedef struct RxLooperArgs {
     unsigned int nap_time;
 } RxLooperArgs;
 
-void initialize_pool_queue(PoolQueue *pool, int buffs, int buff_size);
-
 int initialize_serial_port(const char *dev, int canonical, int parity, int min_chars);
 int set_blocking_mode(int fd, int blocking);
 void *rx_looper(void *args);
@@ -59,8 +57,6 @@ enum {
     FORMATS
 };
 
-uint64_t utime(void);
-uint32_t get_time(uint32_t *time);
 uint16_t crc16(const uint8_t *p, unsigned int len);
 
 #ifdef __cplusplus

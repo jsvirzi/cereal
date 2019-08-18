@@ -8,18 +8,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include "utils.h"
-
-void initialize_pool_queue(PoolQueue *pool, int buffs, int buff_size) {
-    bzero(pool, sizeof(PoolQueue));
-    pool->buff = (uint8_t **) malloc(buffs * sizeof(uint8_t *));
-    pool->mask = buffs - 1;
-    pool->length = (unsigned int *) malloc(buffs * sizeof(unsigned int));
-    for (int i = 0; i < buffs; ++i) {
-        pool->buff[i] = (uint8_t *) malloc(buff_size);
-    }
-    pool->buff_mask = buff_size - 1;
-}
+#include "cereal.h"
 
 int set_blocking_mode(int fd, int blocking) {
     int flags = fcntl(fd, F_GETFL, 0);
@@ -149,23 +138,6 @@ void *rx_looper(void *ext) {
         }
     } while ((args->thread_run != 0) && (*args->thread_run));
     return NULL;
-}
-
-uint64_t utime(void) { /* microseconds */
-    struct timespec now;
-    clock_gettime(CLOCK_REALTIME, &now);
-    uint64_t t = now.tv_sec * 1000000L;
-    t = t + (now.tv_nsec / 1000);
-    return t;
-}
-
-uint32_t get_time(uint32_t *time) { /* milliseconds */
-    struct timespec now;
-    clock_gettime(CLOCK_REALTIME, &now);
-    uint64_t t = now.tv_sec * 1000L;
-    t = t + (now.tv_nsec / 1000000L);
-    if (time) { *time = t; }
-    return (uint32_t) t;
 }
 
 /* TODO provide interface to change polynomial */
