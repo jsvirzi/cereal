@@ -87,7 +87,7 @@ void *tx_looper(void *ext) {
             }
         }
     } while ((args->thread_run != 0) && (*args->thread_run));
-
+    printf("good-bye from tx_looper\n");
     return NULL;
 }
 
@@ -137,6 +137,7 @@ void *rx_looper(void *ext) {
             usleep(args->nap_time);
         }
     } while ((args->thread_run != 0) && (*args->thread_run));
+    printf("good-bye from rx_looper\n");
     return NULL;
 }
 
