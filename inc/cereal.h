@@ -40,7 +40,6 @@ typedef struct RxLooperArgs {
 } RxLooperArgs;
 
 int initialize_serial_port(const char *dev, int canonical, int parity, int min_chars);
-int set_blocking_mode(int fd, int blocking);
 void *rx_looper(void *args);
 void *tx_looper(void *args);
 
